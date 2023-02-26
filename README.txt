@@ -36,3 +36,7 @@ https://fa-ewtk-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/lat
 "CREATION_DATE_c":"2025-09-12",
 "DATA_LINES_c":"qwerty"
 }
+
+
+
+Tried all: '1' addresses, but could not connect over HTTP to server: Oracle SOA 12c
