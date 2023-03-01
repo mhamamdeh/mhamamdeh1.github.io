@@ -40,3 +40,9 @@ https://fa-ewtk-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/lat
 
 
 Tried all: '1' addresses, but could not connect over HTTP to server: Oracle SOA 12c
+
+
+
+Tried all: '1' addresses, but could not connect over HTTP to server: 'fa-ewtk-test-saasfaprod1.fa.ocs.oraclecloud.com', port: '80'
+ failed reasons:
+  [0] address:'fa-ewtk-test-saasfaprod1.fa.ocs.oraclecloud.com/23.204.90.156',port:'80' : java.net.ConnectException: Connection timed out
