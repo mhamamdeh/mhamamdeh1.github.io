@@ -1,0 +1,210 @@
+--install curl
+sudo snap install curl
+
+--install Docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh ./get-docker.sh --dry-run
+
+
+--get docker info
+sudo docker info
+
+--get all groups
+sudo getent group
+
+--get my user groups
+groups
+
+--add user to docker group
+sudo usermod -aG docker mhamamdeh
+
+--get image fedora
+docker image pull fedora
+
+--get image latest
+docker image pull python:latest
+
+--get image with version
+docker image pull python:3.10.9
+
+--get images in docker
+docker image ls
+
+--create container from image
+--(-it) enter active mode
+docker container create -it fedora bash
+
+--get active containers in docker
+docker container ls
+
+--get all containers in docker
+docker container ls -a
+docker container ls --all
+
+--run container
+-- (-i) enter active
+docker container start -i [container name / container id]
+
+--after run container get container info
+cat /etc/*release*
+
+--exit container
+exit
+
+--create and start container from image
+docker container run -it python /bin/bash
+docker container run -it python
+
+--in python container open python command
+python
+
+--get python version
+python3 -v
+
+--update apps in container
+sudo apt update
+
+--upgrade apps in container
+sudo apt upgrade
+
+--remove container
+docker container rm [container id / container name]
+
+--remove image
+docker image rm [image id /  image name]
+
+--get ip addrres
+ip addr
+
+--get image info
+docker image inspect [image name / image id]
+
+-------------------------------------------------------
+>>>>>>>>Networks<<<<<<<<<<
+
+--move file from my computer to path in container
+docker container cp [./my file path ] [container id:./container path]
+
+--copy file in python
+exec(open('/tmp/file.py').read())
+
+--create container with selected port
+docker container run -d -p 8000:80 nginx:latest
+
+--create container with name
+docker container run -d --name web nginx:latest
+
+--create container and set IP in host file to ping with name
+docker container run -it --name client --add-host web:172.17.0.2 centos:latest
+
+--show links in container
+ip link show
+ip addr show
+
+--create container with select network
+docker container run -it --name alp3 --network none alpine:latest
+
+--get all networks
+docker network ls
+
+--create new network
+docker network create mynet
+
+--add container to network
+docker network connect [network name] [container name]
+
+--add network with IP
+docker network create --subnet 10.0.0.0/16 [network name]
+
+--delete container from network
+docker network disconnect [network name] [container name]
+
+--add network not connected with internet
+docker network create --internal [network name]
+-------------------------------------------------------------------
+
+>>>>>>>>>Storage<<<<<<<<<<<<<
+
+--run as super user
+su
+
+--go to docker path
+cd var/lib/docker
+
+--go to docker storage
+cd overlay2
+
+--read file on ubuntu
+cat [file name]
+
+--get directory path on ubuntu
+pwd
+
+--connect file between container and my directory path to reflect changes
+docker container run -it -v [my directory path]:[docker container path] python
+docker container run -it -v /home/mhamamdeh/docker-work/Code:/app/code python
+
+--create volume
+docker volume create myvol
+
+--create container with volume
+docker container run -it -v [volume name]:[/docker container path] python
+
+--get volumes
+docker volume ls
+
+--download docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+
+--build docker-compose
+docker-compose up &
+docker-compose up -d
+
+--delete docker-compose
+docker-compose down
+
+--check container network (ping)
+docker-compose exec web-fe ping -c 1 google.com
+docker-compose exec web-fe ping -c 1 [container name]
+
+----------------------------------------------------------------------
+DOCKER SWARM>>>>>>>>>
+
+--Create docker swarm
+docker swarm init --advertise-addr 127.0.0.1:2377 --listen-addr 127.0.0.1:2377
+
+--Get Swarm token worker to add new node worker
+docker swarm join-token worker
+
+--Get Swarm token manager to add new node manager
+docker swarm join-token manager
+
+--Leave docker swarm
+docker swarm leave --force
+
+
+--befor create instanses we should create swarm on 5 machens to replicate on each.
+--create 5 instanse from nginx
+docker service create --name web -p 80:80 --replicas 5 nginx:latest
+
+--get all services
+docker service ls
+
+--delete service
+docker service rm [service name]
+
+--Get replicated service
+docker service ps [service name]
+
+--rescale number of instanses
+docker service scale [service name]=9
+
+--download docker visualizer
+docker service create \
+  --name=viz \
+  --publish=8080:8080/tcp \
+  --constraint=node.role==manager \
+  --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+  dockersamples/visualizer
+  
+  
