@@ -1,0 +1,3 @@
+ <bpel:assign name="convertToJsonArray">
+      <bpel:from expression="ora:convertToJsonArray($input.payload)" variable="jsonArrayVar"/>
+    </bpel:assign>
