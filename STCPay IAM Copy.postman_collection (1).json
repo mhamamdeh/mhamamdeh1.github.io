@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "c0898368-795b-40e7-b0e8-1c6244de6404",
+		"name": "STCPay IAM Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3838828"
+	},
+	"item": [
+		{
+			"name": "Create User2",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "impl.user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"schemas\":[\r\n  \"urn:scim:schemas:core:2.0:User\"\r\n ],\r\n \"name\":{\r\n  \"familyName\":\"AL Masri\",\r\n  \"givenName\":\"Rida\"\r\n },\r\n \"active\":true,\r\n \"userName\":\"rida@sc.com.jo\",\r\n\r\n \"emails\":[\r\n  {\r\n   \"primary\":true,\r\n   \"value\":\"rida@sc.com.jo\",\r\n   \"type\":\"W\"\r\n  }\r\n ],\r\n \"displayName\":\"Rida AL Masri\",\r\n \"roles\":[\r\n     {\r\n         \"value\":\"71C06DD3DE6D4700AA020F7A834A139E\"\r\n     }\r\n\r\n ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fa-epwq-test-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/scim/Users",
+					"protocol": "https",
+					"host": [
+						"fa-epwq-test-saasfaprod1",
+						"fa",
+						"ocs",
+						"oraclecloud",
+						"com"
+					],
+					"path": [
+						"hcmRestApi",
+						"scim",
+						"Users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User to Role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "impl.user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"schemas\": [\r\n\"urn:oracle:apps:scim:schemas:fa:1.0:Role\"\r\n],\r\n          \"members\":[{\"value\":\"E5721349BD5D1467E0534857AF0A602A\", \"operation\":\"ADD\"}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fa-epwq-test-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/scim/Roles/71C06DD3DE6D4700AA020F7A834A139E",
+					"protocol": "https",
+					"host": [
+						"fa-epwq-test-saasfaprod1",
+						"fa",
+						"ocs",
+						"oraclecloud",
+						"com"
+					],
+					"path": [
+						"hcmRestApi",
+						"scim",
+						"Roles",
+						"71C06DD3DE6D4700AA020F7A834A139E"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
