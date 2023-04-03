@@ -1,0 +1,3 @@
+SET PATH=%PATH%;C:\Oracle\Middleware\Oracle_Home\OPatch
+cd C:\Users\mhamamdeh\Downloads\p30314169_122130_Generic\30314169
+opatch apply
